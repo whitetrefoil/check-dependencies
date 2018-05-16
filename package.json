@@ -1,6 +1,6 @@
 {
   "name": "@whitetrefoil/check-dependencies",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple lib to check node / npm / package dependencies.",
   "main": "lib/common/main.js",
   "module": "lib/esm/main.js",

@@ -8,8 +8,7 @@ I create this for myself to ensure all teammates will upgrade their node / npm p
 Important
 ---------
 
-1. This module is designed to be used in browsers only.
-2. If your code isn't targeting the latest syntax spec of JS / ES,
+If your code isn't targeting the latest syntax spec of JS / ES,
 please use something like babel to transfer this library.
 
 Usage
@@ -34,6 +33,10 @@ check()
 
 Changelog & Roadmap
 -------------------
+
+### v0.1.1
+
+* Fix wrong info in README.
 
 ### v0.1.0
 
