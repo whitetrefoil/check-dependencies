@@ -15,7 +15,22 @@ please use something like babel to transfer this library.
 Usage
 -----
 
+```typescript
 
+import check from '@whitetrefoil/check-dependencies'
+
+check()
+  .then((isOk) => {
+    if (isOk !== true) {
+      // The lib should already print enough logs automatically.
+      // So don't need to print them again.
+      process.exit(-1)
+    }
+  }, (err) => {
+    // Shouldn't reach, handle UNEXPECTED error here.
+  })
+
+```
 
 Changelog & Roadmap
 -------------------
