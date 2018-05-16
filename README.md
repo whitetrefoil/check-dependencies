@@ -34,6 +34,10 @@ check()
 Changelog & Roadmap
 -------------------
 
+### v0.1.2
+
+* Use [Chalk](https://github.com/chalk/chalk) to make the logs louder.
+
 ### v0.1.1
 
 * Fix wrong info in README.
