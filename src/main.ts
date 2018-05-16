@@ -12,6 +12,10 @@ export default async function checkDependencies(
   options?: IOptions,
 ): Promise<boolean> {
 
+  log('=============================================')
+  log('=       Node / NPM Dependencies Check       =')
+  log('=============================================')
+
   try {
     const isNpmOk = await npm({
       forceSuccess,
