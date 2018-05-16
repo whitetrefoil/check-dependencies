@@ -1,3 +1,4 @@
+import chalk      from 'chalk'
 import { Config } from 'check-dependencies'
 import log        from 'fancy-log'
 import node       from './node'
@@ -12,9 +13,11 @@ export default async function checkDependencies(
   options?: IOptions,
 ): Promise<boolean> {
 
-  log('=============================================')
-  log('=       Node / NPM Dependencies Check       =')
-  log('=============================================')
+  log('')
+  log(chalk`{green =============================================}`)
+  log(chalk`{green =}       Node / NPM Dependencies Check       {green =}`)
+  log(chalk`{green =============================================}`)
+  log('')
 
   try {
     const isNpmOk = await npm({
@@ -24,7 +27,21 @@ export default async function checkDependencies(
 
     const isNodeOk = await node({ forceSuccess })
 
-    return isNpmOk && isNodeOk
+    const result = isNpmOk && isNodeOk
+
+    log('')
+    if (result) {
+      log(chalk`{green =============================================}`)
+      log(chalk`{green =}    Node / NPM Dependencies Check: {inverse {green PASS}}    {green =}`)
+      log(chalk`{green =============================================}`)
+    } else {
+      log(chalk`{red =============================================}`)
+      log(chalk`{red =}    Node / NPM Dependencies Check: {inverse {red FAIL}}    {red =}`)
+      log(chalk`{red =============================================}`)
+    }
+    log('')
+
+    return result
   } catch (e) {
     log.error('Something unexpected is happening! Exiting!\n', e)
     return false

@@ -1,3 +1,4 @@
+import chalk             from 'chalk'
 import check, { Config } from 'check-dependencies'
 import log               from 'fancy-log'
 import warn              from './warn'
@@ -26,11 +27,11 @@ export default async function checkNpm(options?: ICheckNpmOptions): Promise<bool
     const result = await check(optionsToCD)
 
     if (result.depsWereOk) {
-      log('Every NPM packages are checked and OK.')
+      log(chalk`{green [PASS]} Every NPM packages are checked and OK.`)
       return true
     }
 
-    log.error('There are something wrong within your local NPM packages:')
+    log.error(chalk`{red [FAIL]} There are something wrong within your local NPM packages:`)
 
     for (const line of result.error) {
       log.error(line)

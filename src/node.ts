@@ -1,4 +1,5 @@
 import { defer } from '@whitetrefoil/deferred'
+import chalk             from 'chalk'
 import check     from 'check-node-version'
 import log       from 'fancy-log'
 import readPkg   from 'read-pkg-up'
@@ -36,18 +37,20 @@ export default async function checkNode(options?: ICheckNodeOptions): Promise<bo
     }
 
     if (results.isSatisfied === true) {
-      log('All engines meet the requirement!')
+      log(chalk`{green [PASS]} All engines meet the requirement!`)
       deferred.resolve(true)
       return
     }
 
-    log.error('Some of your engines do not meet the requirement!')
+    log.error(chalk`{red [FAIL]} Some of your engines do not meet the requirement!`)
     for (const name in results.versions) {
       if (!results.versions.hasOwnProperty(name)) { continue }
       const engine = results.versions[name]
       if (engine.isSatisfied === true) { continue }
 
-      log.error(`Requires ${name}: ${engine.wanted}, actually ${engine.notfound ? 'not installed' : engine.version}`)
+      const wanted = engine.wanted != null ? engine.wanted.raw : 'any'
+      const actual = engine.notfound ? 'not installed' : engine.version as string
+      log.error(`Requires ${name}: ${chalk.green(wanted)}, actually ${chalk.red(actual)}`)
     }
 
     deferred.resolve(false)
